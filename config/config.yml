@@ -1,0 +1,27 @@
+app:
+  name: test
+  description: test backend
+  debug: true
+  version: 1.0
+  secret: "jwtsecret-kasdnisucrweis"
+  tokenExpireTime: 2d
+  refreshSecret: "fWSf!deVz@j+dH2Cvu6DNhAxs!gdq7+2"
+  refreshTokenExpireTime: 14d
+  otlExpireTime: 2M
+  environment: "development"
+
+mongo:
+  test:
+    url: mongodb://base_mongo_node1:27017/test
+  main:
+    url: mongodb://base_mongo_node1:27017/base
+
+
+redis:
+  host: "localhost"
+  port: 6379
+  name: main
+  db: 0
+  username:
+  password:
+  keyPrefix:
