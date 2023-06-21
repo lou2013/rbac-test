@@ -14,12 +14,12 @@
     "start:prod": "node dist/main",
     "mongo:seed": "node dist/cli db seed --drop-database --drop-collections --environment-tag dev",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "export NODE_ENV=test && node dist/cli db seed --drop-database --drop-collections --environment-tag dev && (npm run redis:flushAll & node --expose-gc ./node_modules/.bin/jest  --config ./test/jest-e2e.json --logHeapUsage)",
+    "test:e2e": "export NODE_ENV=test && node dist/cli db seed --drop-database --drop-collections --environment-tag dev && (npm run redis:flushAll & node --expose-gc ./node_modules/.bin/jest  --config ./test/jest-e2e.json --logHeapUsage)",
     "redis:flushAll": "node dist/cli redis flushAll",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test": "jest"
   },
   "dependencies": {
     "@casl/ability": "^6.5.0",
