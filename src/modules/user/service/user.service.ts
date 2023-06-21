@@ -11,7 +11,7 @@ import { PaginateModel } from 'mongoose';
 export class UserService implements UserServiceInterface {
   constructor(
     @InjectModel(UserModel.name)
-    readonly userModel: PaginateModel<User>,
+    readonly userModel: PaginateModel<UserModel>,
     private readonly userFactory: UserFactory,
   ) {}
 
