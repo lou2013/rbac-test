@@ -19,6 +19,7 @@ import { MongodbConfig } from 'src/common/configs/mongo.config';
           configService.get<string>('NODE_ENV') === 'test'
             ? configService.get<MongodbConfig>(AppConfigs.MONGO_TEST)
             : configService.get<MongodbConfig>(AppConfigs.MONGO_MAIN);
+
         return {
           uri: config.url,
           autoIndex: true,

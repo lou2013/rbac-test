@@ -1,14 +1,14 @@
 version: "3.8"
 
 services:
-  oak_mongo_node1:
+  oak_mongo:
     image: m.docker-registry.ir/mongo:4.4.6
-    container_name: oak_mongo_node1
+    container_name: oak_mongo
     restart: always
     ports:
-      - 30001:27017 
+      - 27017:27017 
     volumes:
-      - oak_mongo_node1:/data/db
+      - oak_mongo:/data/db
     environment:
       - TZ=Asia/Tehran
   oak_redis:
@@ -17,4 +17,4 @@ services:
     ports:
       - "6379:6379"
 volumes:
-  oak_mongo_node1:
+  oak_mongo:

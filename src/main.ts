@@ -16,7 +16,7 @@ async function bootstrap(): Promise<void> {
   app.useGlobalInterceptors(SerializerInterceptor(app));
   app.useGlobalFilters(new ErrorFilter());
   const document = new DocumentBuilder()
-    .setTitle('maria')
+    .setTitle('rbac-test')
     .setDescription('description')
     .setVersion('v1')
     .addBearerAuth();

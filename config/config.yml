@@ -12,9 +12,9 @@ app:
 
 mongo:
   test:
-    url: mongodb://base_mongo_node1:27017/test
+    url: mongodb://localhost:27017/test
   main:
-    url: mongodb://base_mongo_node1:27017/base
+    url: mongodb://localhost:27017/base
 
 
 redis:
