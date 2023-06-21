@@ -1,12 +1,12 @@
 import { Expose } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsPhoneNumber, IsString } from 'class-validator';
 
 export class LoginDto {
-  @IsEmail()
+  @IsPhoneNumber('IR')
   @IsString()
   @IsNotEmpty()
   @Expose()
-  email: string;
+  phoneNumber: string;
 
   @IsString()
   @IsNotEmpty()
