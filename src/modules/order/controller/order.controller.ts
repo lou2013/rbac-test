@@ -26,12 +26,12 @@ export class OrderController {
   }
 
   @Post('/')
-  create(@Body() body: any): string {
+  create(@Body() body: unknown): string {
     return `posted with body :${{ body }}`;
   }
 
   @Patch('/')
-  update(@Body() body: any): string {
+  update(@Body() body: unknown): string {
     return `updated with body :${{ body }}`;
   }
 
