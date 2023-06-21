@@ -27,7 +27,7 @@ export class AuthenticationController {
   @UseGuards(LocalAuthGuard)
   @ApiBody({ type: LoginDto })
   @ApiOperation({
-    summary: 'login with email and password',
+    summary: 'login with phoneNumber and password',
     description: 'login and return user data',
   })
   async loginByPassword(@Request() request): Promise<LoginResponseDto> {
