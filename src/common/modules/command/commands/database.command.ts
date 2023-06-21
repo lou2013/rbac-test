@@ -83,17 +83,17 @@ export class MongodbSeedSubCommand extends CommandRunner {
         },
       );
 
-      if (!this.isTest) {
-        for (const collection of collections) {
-          const documentResult = [];
-          for (const data of collection.documents) {
-            if (((data as any)?.tags ?? []).includes(options.environmentTag)) {
-              documentResult.push(...((data as any)?.data ?? []));
-            }
+      // if (!this.isTest) {
+      for (const collection of collections) {
+        const documentResult = [];
+        for (const data of collection.documents) {
+          if (((data as any)?.tags ?? []).includes(options.environmentTag)) {
+            documentResult.push(...((data as any)?.data ?? []));
           }
-          collection.documents = documentResult;
         }
+        collection.documents = documentResult;
       }
+      // }
 
       await seeder.import(collections);
       console.log(`Seeded ${collections.length} collections`);

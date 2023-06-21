@@ -14,12 +14,7 @@ import { MongodbConfig } from 'src/common/configs/mongo.config';
       imports: [],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        //TODO remove test config from here
-        const config =
-          configService.get<string>('NODE_ENV') === 'test'
-            ? configService.get<MongodbConfig>(AppConfigs.MONGO_TEST)
-            : configService.get<MongodbConfig>(AppConfigs.MONGO_MAIN);
-
+        const config = configService.get<MongodbConfig>(AppConfigs.MONGO_MAIN);
         return {
           uri: config.url,
           autoIndex: true,

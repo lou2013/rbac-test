@@ -11,8 +11,6 @@ app:
   environment: "development"
 
 mongo:
-  test:
-    url: mongodb://localhost:27017/test
   main:
     url: mongodb://localhost:27017/base
 
