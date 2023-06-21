@@ -53,10 +53,9 @@ describe('CaslAbilityFactory', () => {
       expect(ability.can(Action.Manage, Resource.ALL)).toBe(false);
     });
     it(`user with roles [${
-      (UserRole.SELL_ADMIN, UserRole.CC_ADMIN, UserRole.ACCOUNTANT_ADMIN)
+      (UserRole.CC_ADMIN, UserRole.ACCOUNTANT_ADMIN)
     }] must have access to users and comments and products and orders`, async () => {
       const ability = caslAbilityFactory.createForUser([
-        UserRole.SELL_ADMIN,
         UserRole.CC_ADMIN,
         UserRole.ACCOUNTANT_ADMIN,
       ]);
