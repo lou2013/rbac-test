@@ -7,8 +7,6 @@ export class User extends BaseEntity implements UserInterface {
 
   password: string;
 
-  email: string;
-
   firstName: string;
 
   lastName: string;

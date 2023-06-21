@@ -1,21 +1,16 @@
 import { RedisManager } from '@liaoliaots/nestjs-redis';
-import {
-  BadRequestException,
-  ConflictException,
-  ModuleMetadata,
-  Provider,
-} from '@nestjs/common';
+import { BadRequestException, ModuleMetadata, Provider } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Test } from '@nestjs/testing';
 import { genSalt, hash } from 'bcrypt';
 import { User } from 'src/modules/user/entity/user.entity';
 import { UserService } from 'src/modules/user/service/user.service';
-import { SignupDto } from '../dto/sign-up.dto';
 import { AuthenticationService } from './auth.service';
 import { Redis } from 'ioredis';
 import { LoginResponseDto } from '../dto/login-response.dto';
 import { UserDto } from 'src/modules/user/dto/user.dto';
+import { Types } from 'mongoose';
 describe('AuthenticationService', () => {
   let authService: AuthenticationService;
   let userService: UserService;
@@ -71,15 +66,17 @@ describe('AuthenticationService', () => {
   describe('validateUserWithPassword', () => {
     it('should return the user if the given password and user password are the same', async () => {
       const user = new User({
-        id: 1,
+        id: new Types.ObjectId().toString(),
         password: await hash('1234', await genSalt(15)),
-        email: 'a@a.com',
         username: 'test',
+        firstName: 'test',
+        lastName: 'test',
+        phoneNumber: '09360000000',
       });
       userService.findByPhoneNumber = jest.fn().mockReturnValue(user);
 
       const result = await authService.validateUserWithPassword({
-        email: 'a@a.com',
+        phoneNumber: '09360000000',
         password: '1234',
       });
       expect(result).toStrictEqual(user);
@@ -87,63 +84,21 @@ describe('AuthenticationService', () => {
     });
     it('should return undefined if the given password and user password are not the same', async () => {
       const user = new User({
-        id: 1,
+        id: new Types.ObjectId().toString(),
         password: await hash('1234', await genSalt(15)),
-        email: 'a@a.com',
         username: 'test',
+        firstName: 'test',
+        lastName: 'test',
+        phoneNumber: '09360000000',
       });
       userService.findByPhoneNumber = jest.fn().mockReturnValue(user);
 
       const result = await authService.validateUserWithPassword({
-        email: 'a@a.com',
+        phoneNumber: '09360000000',
         password: '12345',
       });
       expect(result).toBe(undefined);
       expect(userService.findByPhoneNumber).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('signUp', () => {
-    it('must throw error if user with email already exists', async () => {
-      const signUpDto = new SignupDto({
-        email: 'a@a.com',
-        id: 2,
-        password: '1234',
-        username: 'test',
-      });
-      const user = new User({
-        id: 1,
-        password: await hash('1234', await genSalt(15)),
-        email: 'a@a.com',
-        username: 'test',
-      });
-      userService.findByPhoneNumber = jest.fn().mockReturnValue(user);
-      expect(async () => await authService.signUp(signUpDto)).rejects.toThrow(
-        ConflictException,
-      );
-      expect(userService.findByPhoneNumber).toHaveBeenCalledTimes(1);
-    });
-
-    it("must create user if user with email doesn't exist", async () => {
-      const signUpDto = new SignupDto({
-        email: 'a@a.com',
-        id: 2,
-        password: '1234',
-        username: 'test',
-      });
-      const user = new User({
-        id: 1,
-        password: await hash('1234', await genSalt(15)),
-        email: 'a@a.com',
-        username: 'test',
-      });
-      userService.findByPhoneNumber = jest.fn().mockReturnValue(undefined);
-      userService.create = jest.fn().mockReturnValue(user);
-      authService.login = jest.fn().mockReturnValue({});
-      await authService.signUp(signUpDto);
-      expect(userService.findByPhoneNumber).toHaveBeenCalledTimes(1);
-      expect(userService.create).toHaveBeenCalledTimes(1);
-      expect(authService.login).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -175,10 +130,12 @@ describe('AuthenticationService', () => {
       jwtService.sign = jest.fn().mockReturnValue('test');
       redisClient.set = jest.fn();
       const user = new User({
-        id: 1,
+        id: new Types.ObjectId().toString(),
         password: await hash('1234', await genSalt(15)),
-        email: 'a@a.com',
         username: 'test',
+        firstName: 'test',
+        lastName: 'test',
+        phoneNumber: '09360000000',
       });
       const result = await authService.login(user);
       expect(result).toStrictEqual(
@@ -196,10 +153,12 @@ describe('AuthenticationService', () => {
   describe('refresh', () => {
     it('must throw error if token does not exist', async () => {
       const user = new User({
-        id: 1,
+        id: new Types.ObjectId().toString(),
         password: await hash('1234', await genSalt(15)),
-        email: 'a@a.com',
         username: 'test',
+        firstName: 'test',
+        lastName: 'test',
+        phoneNumber: '09360000000',
       });
       redisClient.get = jest.fn().mockReturnValue(undefined);
       redisClient.del = jest.fn();
@@ -214,10 +173,12 @@ describe('AuthenticationService', () => {
 
     it('must login user if token is correct', async () => {
       const user = new User({
-        id: 1,
+        id: new Types.ObjectId().toString(),
         password: await hash('1234', await genSalt(15)),
-        email: 'a@a.com',
         username: 'test',
+        firstName: 'test',
+        lastName: 'test',
+        phoneNumber: '09360000000',
       });
       redisClient.get = jest.fn().mockReturnValue('1');
       redisClient.del = jest.fn();

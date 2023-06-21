@@ -1,9 +1,9 @@
 export const REDIS_KEYS = {
   REFRESH: ({
-    email,
+    phoneNumber,
     refreshToken,
   }: {
-    email: string;
+    phoneNumber: string;
     refreshToken: string;
-  }): string => `authentication:${email}:REFRESH:${refreshToken}`,
+  }): string => `authentication:${phoneNumber}:REFRESH:${refreshToken}`,
 };

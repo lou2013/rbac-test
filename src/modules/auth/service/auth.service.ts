@@ -46,7 +46,7 @@ export class AuthenticationService {
   async login(user: User): Promise<LoginResponseDto> {
     if (!user) return;
     const payload: JwtPayloadDto = {
-      email: user.email,
+      phoneNumber: user.phoneNumber,
       sub: user.id,
     };
 
@@ -64,7 +64,7 @@ export class AuthenticationService {
     });
     await this.redisClient.set(
       REDIS_KEYS.REFRESH({
-        email: user.email,
+        phoneNumber: user.phoneNumber,
         refreshToken: result.refreshToken,
       }),
       '1',
@@ -84,11 +84,11 @@ export class AuthenticationService {
     if (
       '1' ===
       (await this.redisClient.get(
-        REDIS_KEYS.REFRESH({ email: user.email, refreshToken }),
+        REDIS_KEYS.REFRESH({ phoneNumber: user.phoneNumber, refreshToken }),
       ))
     ) {
       await this.redisClient.del(
-        REDIS_KEYS.REFRESH({ email: user.email, refreshToken }),
+        REDIS_KEYS.REFRESH({ phoneNumber: user.phoneNumber, refreshToken }),
       );
       return this.login(user);
     }

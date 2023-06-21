@@ -3,7 +3,7 @@ import { JwtPayload } from 'jsonwebtoken';
 
 export class JwtPayloadDto {
   @Expose()
-  email: string;
+  phoneNumber: string;
 
   @Expose()
   sub: string;
