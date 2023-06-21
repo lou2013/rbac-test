@@ -5,15 +5,17 @@ import {
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { MongooseError } from 'mongoose';
+import { MongoError } from 'mongodb';
 export class ErrorFilter implements ExceptionFilter {
   catch(exception: any, host: ArgumentsHost): void {
     const response = host.switchToHttp().getResponse<Response>();
+
     let message: string = exception.message;
     let status: number = exception.status;
     let errorFields: unknown;
-    if (exception instanceof MongooseError) {
-      status = HttpStatus.CONFLICT;
+    if (exception instanceof MongoError) {
+      status = 500;
+      if (exception.code === 11000) status = HttpStatus.CONFLICT;
       message = exception.message;
     }
     if (exception instanceof UnprocessableEntityException) {

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AppAbility } from 'src/common/casl/casl-ability.factory';
 import { CheckPolicies } from 'src/common/casl/policy-handler';
@@ -21,6 +21,16 @@ export class UserController {
     ability.can(Action.Read, Resource.USERS),
   )
   async createUser(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
-    return await this.userService.create(createUserDto);
+    const data = await this.userService.create(createUserDto);
+
+    return new UserDto(data);
+  }
+
+  @Get('/')
+  @CheckPolicies((ability: AppAbility) =>
+    ability.can(Action.Read, Resource.USERS),
+  )
+  async find(): Promise<string> {
+    return 'find all';
   }
 }

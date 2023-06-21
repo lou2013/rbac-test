@@ -37,9 +37,9 @@ export class UserDto extends BaseDto implements UserInterface {
   @IsString()
   password: string;
 
+  @Expose()
   @IsString()
   @IsPhoneNumber('IR')
-  @Expose()
   phoneNumber: string;
 
   @Expose()

@@ -1,0 +1,86 @@
+[
+    {
+        "tags": [
+            "dev",
+            "main"
+        ],
+        "data": [
+            {
+                "_id": {
+                    "$oid": "000000000000000000000001"
+                },
+                "createdAt": "2022-05-21T10:28:39.272Z",
+                "updatedAt": "2022-05-21T10:28:39.272Z",
+                "username": "manager",
+                "firstName": "iman",
+                "lastName": "mgh",
+                "phoneNumber": "09360074042",
+                "password": "$2b$15$u1oYhzRNQMgX45SZ6nD8hOTnYOCVWRVFSpOdzq20Qgphl6ujTxRj2",
+                "roles": [
+                    "ADMIN"
+                ]
+            },
+            {
+                "_id": {
+                    "$oid": "000000000000000000000002"
+                },
+                "createdAt": "2022-05-21T10:28:39.272Z",
+                "updatedAt": "2022-05-21T10:28:39.272Z",
+                "username": "sell_manager",
+                "firstName": "iman",
+                "lastName": "mgh",
+                "phoneNumber": "09360074043",
+                "password": "$2b$15$u1oYhzRNQMgX45SZ6nD8hOTnYOCVWRVFSpOdzq20Qgphl6ujTxRj2",
+                "roles": [
+                    "SELL_ADMIN"
+                ]
+            },
+            {
+                "_id": {
+                    "$oid": "000000000000000000000003"
+                },
+                "createdAt": "2022-05-21T10:28:39.272Z",
+                "updatedAt": "2022-05-21T10:28:39.272Z",
+                "username": "accountant_manager",
+                "firstName": "iman",
+                "lastName": "mgh",
+                "phoneNumber": "09360074044",
+                "password": "$2b$15$u1oYhzRNQMgX45SZ6nD8hOTnYOCVWRVFSpOdzq20Qgphl6ujTxRj2",
+                "roles": [
+                    "ACCOUNTANT_ADMIN"
+                ]
+            },
+            {
+                "_id": {
+                    "$oid": "000000000000000000000004"
+                },
+                "createdAt": "2022-05-21T10:28:39.272Z",
+                "updatedAt": "2022-05-21T10:28:39.272Z",
+                "username": "cc_manager",
+                "firstName": "iman",
+                "lastName": "mgh",
+                "phoneNumber": "09360074045",
+                "password": "$2b$15$u1oYhzRNQMgX45SZ6nD8hOTnYOCVWRVFSpOdzq20Qgphl6ujTxRj2",
+                "roles": [
+                    "CC_ADMIN"
+                ]
+            },
+            {
+                "_id": {
+                    "$oid": "000000000000000000000005"
+                },
+                "createdAt": "2022-05-21T10:28:39.272Z",
+                "updatedAt": "2022-05-21T10:28:39.272Z",
+                "username": "cc_accountant_manager",
+                "firstName": "iman",
+                "lastName": "mgh",
+                "phoneNumber": "09360074046",
+                "password": "$2b$15$u1oYhzRNQMgX45SZ6nD8hOTnYOCVWRVFSpOdzq20Qgphl6ujTxRj2",
+                "roles": [
+                    "CC_ADMIN",
+                    "ACCOUNTANT_ADMIN"
+                ]
+            }
+        ]
+    }
+]

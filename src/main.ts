@@ -21,6 +21,7 @@ async function bootstrap(): Promise<void> {
     .setVersion('v1')
     .addBearerAuth();
   const openApiObject = SwaggerModule.createDocument(app, document.build());
+
   SwaggerModule.setup('docs/index', app, fixSwaggerQuery(openApiObject), {});
   await app.listen(3000);
 }
