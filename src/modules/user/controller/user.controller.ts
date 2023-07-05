@@ -18,7 +18,7 @@ export class UserController {
 
   @Post('/')
   @CheckPolicies((ability: AppAbility) =>
-    ability.can(Action.Read, Resource.USERS),
+    ability.can(Action.Create, Resource.USERS),
   )
   async createUser(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
     const data = await this.userService.create(createUserDto);
